@@ -11,9 +11,9 @@ const Skills = () => {
       </p>
 
       <div className="skills__container container grid">
-        {skills.map(({ name, percentage, description }, inbox) => {
+        {skills.map(({ name, percentage, description }, index) => {
           return (
-            <div className="skills__item">
+            <div className="skills__item" key={index}>
               <div className="skills__titles">
                 <h3 className="skills__name">{name}</h3>
                 <span className="skills__number">
