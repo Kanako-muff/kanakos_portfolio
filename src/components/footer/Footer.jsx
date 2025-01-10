@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTwitter, FaDribbble, FaBehance } from "react-icons/fa";
+import "./footer.css";
 
 const Footer = () => {
   return (
@@ -16,6 +17,14 @@ const Footer = () => {
             <FaBehance />
           </a>
         </div>
+
+        <p className="footer__copyright text-cs">
+          &copy; 2024 <span>Luique</span>. All Rights Reserved
+        </p>
+
+        <p className="footer__copyright text-cs">
+          Developed by <span>CrypticalCoder</span>
+        </p>
       </div>
     </footer>
   );
