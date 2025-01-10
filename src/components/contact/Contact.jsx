@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import {
   FaRegAddressBook,
   FaRegEnvelope,
@@ -8,6 +9,34 @@ import {
 import "./contact.css";
 
 const Contact = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        "https://api.sheetbest.com/sheets/f3a213e1-7a65-44b8-90d7-0544a4fe78af",
+        form
+      )
+      .then((response) => {
+        console.log(response);
+        //clearing form fields
+        setForm({ name: "", email: "", subject: "", message: "" });
+      });
+  };
+
   return (
     <section className="contact section" id="contact">
       <h2 className="section__title text-cs">Contact Me</h2>
@@ -54,20 +83,32 @@ const Contact = () => {
           </div> */}
         </div>
 
-        <form className="contact__form">
+        <form className="contact__form" onSubmit={handleSubmit}>
           <div className="contact__form-group grid">
             <div className="contact__form-div">
               <label className="contact__form-tag text-cs">
                 Your Full Name<b>*</b>
               </label>
-              <input type="text" className="contact__form-input" />
+              <input
+                type="text"
+                name="name"
+                onChange={handleChange}
+                value={form.name}
+                className="contact__form-input"
+              />
             </div>
 
             <div className="contact__form-div">
               <label className="contact__form-tag text-cs">
                 Your Email Address<b>*</b>
               </label>
-              <input type="text" className="contact__form-input" />
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                value={form.email}
+                className="contact__form-input"
+              />
             </div>
           </div>
 
@@ -75,14 +116,32 @@ const Contact = () => {
             <label className="contact__form-tag text-cs">
               Your Subject<b>*</b>
             </label>
-            <input type="text" className="contact__form-input" />
+            <input
+              type="text"
+              name="subject"
+              onChange={handleChange}
+              value={form.subject}
+              className="contact__form-input"
+            />
           </div>
 
           <div className="contact__form-div contact__form-area">
             <label className="contact__form-tag text-cs">
               Your Message<b>*</b>
             </label>
-            <textarea className="contact__form-input"></textarea>
+            <textarea
+              name="message"
+              onChange={handleChange}
+              value={form.message}
+              className="contact__form-input"
+            ></textarea>
+          </div>
+
+          <div className="contact__submit">
+            <p>* Accept the terms and conditions.</p>
+            <button type="submit" className="btn text-cs">
+              Send Message
+            </button>
           </div>
         </form>
       </div>
