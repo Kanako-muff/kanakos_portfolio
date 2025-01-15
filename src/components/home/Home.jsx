@@ -4,6 +4,7 @@ import shapeOne from "../../assets/shape-1.png";
 import shapeTwo from "../../assets/shape-2.png";
 
 import { FaTwitter, FaDribbble, FaBehance } from "react-icons/fa";
+import CV from "../../assets/Kanako_CV.pdf";
 import "./home.css";
 
 const Home = () => {
@@ -73,13 +74,17 @@ const Home = () => {
           </div>
 
           <div className="home__btns text-cs">
-            <a href="" className="btn">
+            <a download="" href={CV} className="btn">
               Download CV
             </a>
-            <a href="" className="hero__link text-cs">
+            <a href="#skills" className="hero__link text-cs">
               My Skills
             </a>
           </div>
+        </div>
+
+        <div className="section__deco deco__left">
+          <img src={shapeOne} alt="" className="shape" />
         </div>
       </div>
     </section>
